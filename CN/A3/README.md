@@ -71,12 +71,4 @@ For each run, the simulator prints:
 - `protocols/rdt.py`: rdt 3.0 implementation
 - `protocols/gbn.py`: Go-Back-N implementation
 - `protocols/sr.py`: Selective Repeat implementation
-- `REPORT.md`: short report with FSM diagrams and testing notes
-- `STUDENT_INFO.txt`: fill your student ID, name, and section before demo submission
 
-## Demo Checklist
-
-1. Fill `STUDENT_INFO.txt`.
-2. Run assignment tests and keep terminal output visible.
-3. Capture screenshot(s) of successful output.
-4. Submit source code + report + screenshots to Google Classroom.
