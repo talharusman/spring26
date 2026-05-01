@@ -139,10 +139,11 @@ class NumpyModelBase:
     Manages parameters, their optimization, and caching for backprop.
     Subclasses implement specific architectures.
     """
+    def __init__(self, rng: np.random.Generator) -> None:
         self.rng = rng
-        self.params = {}
-        self.step_count = 0
-        self.cache = {}
+        self.params = {}  # Dictionary of trainable parameters
+        self.step_count = 0  # For Adam's bias correction
+        self.cache = {}  # Store activations during forward pass for backprop
 
     def _weight_init(self, out_dim: int, in_dim: int, positive: bool) -> np.ndarray:
         """Initialize weights using appropriate strategies.
@@ -543,6 +544,7 @@ class ConstrainedLinearTorch(nn.Module):
     """A linear layer where we can optionally force weights to stay positive.
     This helps us maintain desired properties like convexity or monotonicity.
     """
+    def __init__(self, in_features: int, out_features: int, positive: bool = False, bias: bool = True) -> None:
         super().__init__()
         self.positive = positive
         if positive:
@@ -574,6 +576,7 @@ class ISNN1Torch(nn.Module):
     This is the same model structure as the NumPy version,
     but PyTorch handles all the gradient computation for us.
     """
+    def __init__(self, width: int = 10, depth: int = 2) -> None:
         super().__init__()
         self.width = width
         self.depth = depth
@@ -624,6 +627,7 @@ class ISNN2Torch(nn.Module):
     """The simpler ISNN-2 variant in PyTorch.
     One branch layer and two x layers—same setup as the paper.
     """
+    def __init__(self, width: int = 15) -> None:
         super().__init__()
         self.width = width
 
